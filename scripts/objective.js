@@ -5,9 +5,10 @@ class Objective{
     constructor(subject, objectiveData){
         this.subject = subject;
         this.statement = objectiveData[0];
-        this.testType = objectiveData[1];
-        this.coords = objectiveData[2];
-        this.xpValue = objectiveData[3];
+        this.achievementStatement = objectiveData[1];
+        this.testType = objectiveData[2];
+        this.coords = objectiveData[3];
+        this.xpValue = objectiveData[4];
         this.achieved = false;
     }
 
@@ -19,10 +20,10 @@ class Objective{
             case "position":
                 // if there's only one coordinate then it's the x value, so we just check that and award xp if it's reached:
                 if (this.coords.length === 1) {
-                    this.achieved = (this.subject.x === this.coords[0]);
+                    this.achieved = (this.subject.gridX === this.coords[0]);
                 // if there are two coordinates we require a match for each:
                 } else {
-                    this.achieved = ((this.subject.x === this.coords[0]) && (this.subject.y === this.coords[1]));
+                    this.achieved = ((this.subject.gridX === this.coords[0]) && (this.subject.y === this.coords[1]));
                 };
         }
     }
