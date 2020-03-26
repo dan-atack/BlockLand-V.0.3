@@ -1,0 +1,108 @@
+@keyframes spin {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+body {
+    background-color: #0d0f0d;
+    color: white;
+    display: flex;
+}
+
+.player {
+    transition-duration: 0.125s;
+    position: absolute;
+}
+
+.world {
+    margin-top: 1%;
+    margin-left: 10%;
+    border: 2px solid #ffaee5;
+    width: 576px;
+    height: 704px;
+    position: relative;
+    font-size: 36px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.background {
+    width: 576px;
+    height: 704px;
+    position: absolute;
+    background-image: url('/assets/backgrounds/background001.png');
+    opacity: 33%;
+}
+
+.sidebar-container {
+    margin-top: 1%;
+    margin-left: 1%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+}
+
+.sidebar {
+    color: white;
+    width: 20%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 256px;
+    padding: 16px;
+    border: 1px solid cyan;
+}
+
+.top {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.bottom {
+    border-radius: 0px 0px 8px 8px;
+}
+
+.sidebar-button {
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    border: 2px solid whitesmoke;
+    height: 64px;
+    width: 256px;
+    background-color: aqua;
+    color: darkred;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.block {
+    position: absolute;
+    width: 64px;
+}
+
+.achievement {
+    background-color: black;
+    padding: 4px;
+    border: 1px solid whitesmoke;
+    border-radius: 8px;
+}
+
+.golden-egg {
+    box-sizing: border-box;
+    border-radius: 50%;
+    box-shadow: 0px 0px 12px 12px gold;
+}
+
+.portal {
+    margin-left: -16px;
+    height: 96px;
+    width: 96px;
+    filter: blur(1px);
+    border-radius: 50%;
+    z-index: 100;
+    animation: spin 6s linear infinite reverse;
+}

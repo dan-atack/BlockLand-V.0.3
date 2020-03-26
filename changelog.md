@@ -1,13 +1,13 @@
 # In the Beginning there was nothing...
 
 ---
-<img src="assets/Screenshots/Nothing.png" style="width: 60%;"/>
+<img src="assets/Screenshots/00-Nothing.png" style="width: 60%;"/>
 ---
 
 ## Then there was the world!
 
 ---
-<img src="assets/Screenshots/the_world.png" style="width: 60%;"/>
+<img src="assets/Screenshots/01-the_world.png" style="width: 60%;"/>
 ---
 
 # PHASE ONE: Creating the World
@@ -33,7 +33,7 @@ In the initial setup phase, I want to be able to run a function that will popula
 7. I really want the world to be a square at the middle, rather than a line at the top. Let's change the original block-maker function, so it can be assigned start and stop coordinates that are 'out in the world' instead of being stuck at the top...
 Success! It even remembered where the world ended and dropped to the next row at the appropriate spot!
 ---
-<img src="assets/Screenshots/block_loop.png" style="width: 60%;" />
+<img src="assets/Screenshots/02-block_loop.png" style="width: 60%;" />
 ---
 
 8. Now I think we've just about perfected the basic block maker function. Time to upgrade it to the Block Printer, which will take parameters which define a shape, and call the block maker function to make this shape. We'll start with... a rectangle!
@@ -51,7 +51,7 @@ Success! It even remembered where the world ended and dropped to the next row at
 14. Save the Project in version 0.1 file to safeguard all this progress against future tampering!
 
 ---
-<img src="assets/Screenshots/Phase-1.png" style="width: 60%;" />
+<img src="assets/Screenshots/03-Phase-1.png" style="width: 60%;" />
 ---
 
 # PHASE TWO: The Laws of Motion
@@ -74,7 +74,7 @@ In phase two time will be introduced, in order to regulate motion. The CSS grid 
 ... It works! You can even jump up if it's just one tile, although it's a little bit clunky.
 
 ---
-<img src="assets/Screenshots/Phase-2.png" style="width: 60%;" />
+<img src="assets/Screenshots/04-Phase-2.png" style="width: 60%;" />
 ---
 
 # PHASE THREE: The End of the Beginning
@@ -94,7 +94,7 @@ In this phase I also reorganized the game's file locations, made the game engine
 4. Added new artwork with the help of Atack Artwork & Design Studios, who have their own graphics tablet:
 
 ---
-<img src="assets/Screenshots/Phase-3-intro.png" style="width: 60%;" />
+<img src="assets/Screenshots/05-Phase-3-intro.png" style="width: 60%;" />
 ---
 
 5. If the player moves to within a certain distance of the edge in either direction, several things must happen simultaneously:
@@ -118,12 +118,12 @@ B: Everything in the world shifts away from the direction the player moved in:
 10. Crudely make some kind of level out of all this and make a mission for the player to touch both of the edges of the world. A console log message of congratulations is then proudly displayed!
 
 ---
-<img src="assets/Screenshots/Phase-3-levelup.png" style="width: 60%;" />
+<img src="assets/Screenshots/06-Phase-3-levelup.png" style="width: 60%;" />
 ---
 
 11. Save this stage and get to work on some actual homework!
 
-# PHASE FOUR: The Mission object and the World Builder Suite
+# PHASE FOUR (AKA Version 0.1): The Mission object and the World Builder Suite
 
 In the first true stage beyond the game's initial setting up (phases one through three were essentially just one long march to the start line) I will introduce some pre-packaged environments for the player to run through, using more than just 2 of the 5 lovely tiles now at my disposal. There will be two types of things made here:
 A) customized pre-built 'biomes' that span approximately a dozen or so tiles and that are completely pre-ordained (we'll store the column templates as lists of one-digit numbers and save a fortune on memory!) and
@@ -144,7 +144,7 @@ Lastly, since tidiness is the highest virtue, I will clean up the hastily added 
 6. Draw, and then implement 3 more hand-crafted biomes.
 
 ---
-<img src="assets/Screenshots/biometric.png" style="width: 60%;" />
+<img src="assets/Screenshots/07-biometric.png" style="width: 60%;" />
 ---
 
 7. Make it so that, as the screen scrolls, the block column object's block printer method builds a biome instead of a lone column when it is called.
@@ -158,13 +158,87 @@ Lastly, since tidiness is the highest virtue, I will clean up the hastily added 
 11. Save current progress as version 0.1. We're restarting our version counts here, and the reason why is... to Create a repo on Github and learn the ropes of that system!!
 
 ---
-<img src="assets/Screenshots/wide-world.png" style="width: 60%;">
+<img src="assets/Screenshots/08-wide-world.png" style="width: 60%;">
 ---
 
-# PHASE FIVE (AKA Version 0.2): Dynamic Blocks!
+# PHASE FIVE (AKA Version 0.2): Dynamic Blocks and Better Physics!
 
-Phase Five will see the incorporation of three key features: blocks that have various properties such as permeability (water you can 'swim' in), climbability (think trees and later maybe ladders) and LETHALITY! This will lead us to finally develop the concept of the player's death, which in its initial stages will be immediate and thus will require the introduction of a 'restart' button in the game, and everything else that your death would require in terms of re-running/resetting things. The player's death will be hard to implement but not radically complicated since it's just a matter of finding what needs to be reset; the dynamic blocks interaction will require some more out-of-the-box thinking since we'll have to modify the columns' WayClear function to test the blocks for their attributes instead of simply seeing if there's something in the way of the intended direction of movement.
+Phase Five will see the incorporation of three key features: 1. Blocks that have various properties such as permeability and climbability, 2. Basic physics to make jumping, sinking(!) and general movement more fluid and less grid-like (we got off the grid but we didn't get very far!) and finally... 3. LETHALITY! This will lead us to finally develop the concept of the player's death, which in its initial stages will be immediate and thus will require the introduction of a 'restart' button in the game, and everything else that your death would require in terms of re-running/resetting things. The player's death will be hard to implement but not radically complicated since it's just a matter of finding what needs to be reset; the dynamic blocks interaction will require some more out-of-the-box thinking since we'll have to modify the columns' WayClear function to test the blocks for their attributes instead of simply seeing if there's something in the way of the intended direction of movement. For the physics, let's start by seeing if we can refine the collision detection system to work when the player is between exact grid spaces, and go from there. Towards the end of this phase a few 'missions' of discovery will be added and the missions/sidebar area will be jazzed up so you no longer need to use the console/browser tools to see your mission objectives.
+
+1. Terrain detection: First, just have a console log statement telling you which kind of block you're standing on top of/ trying to move into.
+
+2. Make a distinction in the blocks for solidity, so the way clear function lets you pass into blocks that aren't solid.
+
+3. Then, introduce a gameOn variable for the engine; the engine only runs if this is set to true, which it will be when you press the any key. NOTE: This can also be connected to other events in the game than you dying; finishing a mission or just pausing the action are all offshoots of this.
+
+4. Connect the two previous features: if you walk on a tile of a certain type (let's say lava AKA type 4) you 'perish' and the game stops. I E connect the way ahead's tile-type output to the game shutdown mechanism.
+
+5. Start introducing the idea of changes over time; lava kills you but it doesn't do so immediately, and you should still sink a little bit before you die... turns out that this is more than just a casual addition of a new feature... Major re-thinking is now in order:
+
+6. The Way Clear function: currently spits out a 1-2 part array containing a boolean and an optional number... very messy. Convert that into just one value - the number zero for 'clear' and just the block type number if not. Sadly this will mean reversing any conditions that depend on its output since right now the return 'true' means clear, whereas the new version will return 'false' if the way is clear, as in 'no obstruction.' Will rename to isWayBlocked to keep labeling conventions as readable as possible.
+
+7. Re-tooled the physics engine to work on impulse rather than grid value snapping. Still looks about as clunky and I'm sure more than a few bugs have crept in and not yet been squashed. Removed 'move(direction)' middlemen functions for player movement and condensed that into a button handler which gives impulse, and an impulse movement method which runs every cycle: does collision checks and updates player's coordinates accordingly.
+
+8. Alter movement (x/y coordinate updates) so that impulse plays more of a role than just being a timer - e.g. you move faster when your impulse is high and slower as it tails off. Now that we're truly off the grid* for the player's movement it is finally possible to use some basic algebra to make the movement functions far more smooth - and interesting... And fucking complicated it turns out!
+
+9. Completed some more significant overhauls to the physics system, which now includes both horizontal and vertical obstruction checks (each its own method) plus one method for handling the outcome of movement requests (sent from the keyboard handler) and the blockage checks. It is still possible to fall through a corner but that seems easily solvable after what we've just been through!
+
+10. Expand collision-detection to include:
+
+11. The block you are currently in? (for air and water)
+
+12. The block you are currently standing on.
+
+13. The edges of the world.
+
+14. The corners!!
+
+15. Isolate Collision Detection AND Impulse Mover into their own modules (painful but oh so necessary for the future of the project).
+
+16. The above step might also be a good time to pave the way for removing a lot of the player's physical/movement-related attributes into a parent 'Physics' class, for when the time comes to add some other creatures to the world (or thrown objects, or anything else at all ultimately).
+
+17. Have variables for: Friction: Air, Land and Ice... Water we'll do later when there are some 'deeper' water tiles to play with.
+
+18. Once the engine is running as we like, it's time to get back to the fun stuff: level-building and missions!
+
+19. Re-add death: If you stand on lava, you die instantly, meaning the game freezes, text is displayed announcing your death, and the a restart button appears... Hitting the restart button will set the player's x and y coordinates to zero, turn off horizontal offset, remove all player XP, shift the screen back to its original position and unpause the game. Prior to hitting reset button, the pause button should have no effect...
+
+20. Alter Biome Builder to accept wider biomes, then make 3 - 4 of those.
+
+21. Create 2 missions (we can keep the visiting of the sides, although it might be a bit of a case of the journey to the side being the 'level' that makes that entertaining.)
+
+22. Add some flair to the mission module, i.e. message text for when you complete a mission that ISN'T in the console log, and see if there are some nice CSS animations for gaining XP or leveling up or whatever.
+
+23. Background image/s!!!
+
+---
+<img src="assets/Screenshots/09-mission-1.png" style="width: 60%;">
+---
+
+24. Make 2 more levels that push the horizon of the Columns object's ability to add and remove columns:
+
+25. Extend the original world farther as a level instructions/mission setup:
+* Add New Mission, Level 2, that contains setup instructions to widen the world: "add-columns", [ [column start number (rightwards), column end number], [column start (leftwards), column end] ]
+* Add new case to engine's mission setup method for 'add-columns'
+
+26. The final level's setup wipes and stores the original world and renders a completely new world: BaconLand!
+
+### 27. Upload Version 0.2 to Github before the corona virus kills us all!!!!
+
+### 28. Now for the real fun: Upgrade the style sheet to SCSS, which will require setting up a basic json package so we can tell our CSS style sheet to 'watch' the SCSS sheet and convert it to CSS when we run the page...
+
+### 29. This in turn requires some further reconfiguration of the games file folder structure, so we'll bring in the server.js and all of its various dependencies at this stage too, by npm installing express, morgan, concurrently and nodemon, and setting up the server.js file as the 'entry point' to the program. This will consolidate the newly added scss compilation process, and also hopefully let people play this game on the local network!
+
+### 30. Finishing touches: Rumble effect for level 2 (world widening)
+
+### 31. Finishing touches: Vortex effect (spin and blur) for level 3 (interdimensional)
+
+### 32. Player XP display and Mission statement area glow briefly when new level loads.
+
+# PHASE SIX (AKA Version 0.3): Say Hello to the Bad Guys!
+
+Phase Five, while it saw the introduction of several key features, was far too ambitious for a single stage, and should really have been made in two or even three version increments. Phase six will restrict itself to just one purpose: adding the Enemy class.
 
 # Food for Future Thought: On Scalability for smaller screens: Screen Scroll distance variable might be worth its weight in gold.
 
-# Artwork Upgrades: Polish up the edges of existing block types - looking at you, lava - so that they fit together more nicely. Display as tiles in the file where you work on them so you can see them side by side as you edit.
+# Artwork Upgrades: Display new block images as tiles in the file where you work on them so you can see them side by side as you edit.

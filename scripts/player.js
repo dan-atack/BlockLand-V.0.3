@@ -4,7 +4,8 @@ class Player {
     constructor(root, xStart, yStart) {
         this.x = xStart;
         this.y = yStart;
-        // Fingers crossed!
+        this.gridX = Math.floor(xStart);
+        this.gridY = Math.floor(yStart);
         this.facing = "right";
         this.domElement = document.createElement("img");
         this.domElement.src = "./assets/sprites/player.png";
@@ -14,89 +15,65 @@ class Player {
         this.domElement.id = "player";
         this.domElement.className = "player";
         root.appendChild(this.domElement);
-        // attempting to introduce movement over time... later on!
-        this.speed = 1;
-        // We'll keep track of the horizontal offset here to regulate the player's movement animation.
-        // It will only be changed by the 'translate' method, so you'll be able to move around normally when you're
-        // off to the side of the original world:
+        // We'll keep track of the horizontal offset here to regulate the player's movement animation so you don't move off screen:
         this.horizontalOffset = 0;
-        // Movement cooldowns to prevent you spamming the buttons:
-        this.leftCoolingDown = false;
-        this.rightCoolingDown = false;
+        // The type of block you are standing on will inform your movement over it
+        this.standingOn = 0;
+        // The medium you're in will affect your movement (air is normal, water will be slower)
+        this.medium = 0;
+        this.topSpeed = 0.25;
+        // Movement handling now in the form of impulse values, largely handled by the physics object now:
+        this.xSpeed = 0;
+        this.ySpeed = 0;
         // Let's RPG it up a bit!
         this.experience = 0;
+        this.isDead = false;    // That's a bit morbid, isn't it?
     }
 
-// Player methods! Movement responders come first:
+// Player methods!
+// Movement responders come first, now bundled into one mega function (but with switch cases, to mitigate the chunkiness):
 
-
-    moveRight () {
-        // introducing the horizontal flip!!!
-        if (this.facing != "right") {
-            console.log("flipping to the right")
-            this.facing = "right";
-            this.domElement.style.transform = "rotateY(0deg)";
-        };
-        if ((!(this.rightCoolingDown)) && (!(this.x == WORLD_WIDTH))) {
-            // this function will add one to your x value, then update the player's dom element location.
-            // If you walk towards the edge of the screen, your x value continues to increase,
-            // but your dom Element is essentially pushed back into the main screen, and the distance between the
-            // original screen's coordinates and your real x value is represented by the horizontal offset value:
-            this.x += 1;
-            this.domElement.style.left = `${(this.x - this.horizontalOffset) * PLAYER_WIDTH}px`;
-            this.rightCoolingDown = true;
-            console.log(this.x);
-        };
-    };
-
-    moveLeft () {
-        // introducing the horizontal flip!!!
-        if (this.facing != "left") {
-            console.log("flipping to the left")
-            this.facing = "left";
-            this.domElement.style.transform = "rotateY(180deg)";
-        };
-        // Attempting to impose move limitation based on world width:
-        if ((!(this.leftCoolingDown)) && (!(this.x == -WORLD_WIDTH))) {
-            this.x -= 1;
-            this.domElement.style.left = `${(this.x - this.horizontalOffset)* PLAYER_WIDTH}px`;
-            // The game engine will check and reset this value every cycle:
-            this.leftCoolingDown = true;
-        };
-        // this function will subtract 1 from your x value, then update the player's dom element location.
-
-    };
-
-    moveUp () {
-        // If you're not at the top of the board,
-        if (!(this.y >= (SCREEN_HEIGHT/PLAYER_WIDTH -1))) {
-            // this function will subtract 1 from your y value (positive y is distance from the bottom now),
-            // then update the player's dom element location.
-            this.y += 2;
-            this.domElement.style.bottom = `${this.y * PLAYER_WIDTH}px`;
-            // Adding a condition to level one's victory clause wherein you must jump to get your xp for visiting the edges:
-            if (this.x === WORLD_WIDTH) {
-                // this.westEnder = true;
-            } else if (this.x === -WORLD_WIDTH) {
-                    // this.eastEnder = true;
+    handlePlayerMovement = (event) => {
+        // Adding one reference to the game's engine here:
+        if (thomas.gameOn) {
+            // Relocate the blockade check?! YES.
+            switch(event.code) {
+                case "ArrowLeft":
+                    // face the appropriate direction:
+                    this.facing = "left";
+                    this.domElement.style.transform = "rotateY(180deg)";
+                    this.xSpeed = -this.topSpeed;
+                    break;
+                case "ArrowRight":
+                    this.facing = "right";
+                    this.domElement.style.transform = "rotateY(0deg)";
+                    this.xSpeed = this.topSpeed;
+                    break;
+                case "ArrowUp":
+                    // If you're not at the top of the board, and you're not standing on air (disable second and third conditions to allow flight):
+                    if ((this.y <= (SCREEN_HEIGHT/PLAYER_WIDTH - 1)) && (this.standingOn != 0) && (Number.isInteger(this.y))) {
+                        this.ySpeed = 0.6875;
+                    }
+                    break;
+                case "ArrowDown":
+                    // if you're not at the bottom you can move down...
+                    if (!(this.y == 0)) {
+                        this.ySpeed = -0.25;
+                    };
+                    break;
             }
-        };
+        } 
     };
 
-    moveDown () {
-        // If you're not at the bottom of the board,
-        if (!(this.y == 0)) {
-            // this function will add one to your y value, then update the player's dom element location.
-            this.y -= 1;
-            this.domElement.style.bottom = `${this.y * PLAYER_WIDTH}px`;
-        }
-    }
+    // And down at the bottom we have the method for horizontal dom element translation, distinct from regular motion:
 
     horizontalTranslate (horizontalOffset) {
+        
         // as the player moves through the world, the player's x value will keep an absolute frame of reference,
         // but the dom element must stay centered, so it will be translated. Subracting the h offset makes it
         // so that your character appears further to the left than their absolute position suggests...
         this.horizontalOffset = horizontalOffset;
         this.domElement.style.left = `${(this.x - horizontalOffset) * PLAYER_WIDTH}px`;
+        `${(this.x - this.horizontalOffset)* PLAYER_WIDTH}px`
     };
 };
