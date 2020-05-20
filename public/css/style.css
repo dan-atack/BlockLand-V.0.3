@@ -13,6 +13,54 @@ body {
     display: flex;
 }
 
+.sign-in {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 16px;
+}
+
+.create-account, .existing-user {
+    padding: 24px;
+    margin: 16px;
+    border: 1px solid whitesmoke;
+    box-shadow: 0px 0px 2px 2px whitesmoke;
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+    width: 240px;
+    background-color: rgb(13, 24, 24);
+}
+
+.signin-form {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field {
+    margin: 16px;
+}
+
+.submit-ready {
+    width: 128px;
+    background-color: yellowgreen;
+}
+
+.submit-unready {
+    width: 128px;
+    background-color: tomato;
+}
+
 .player {
     transition-duration: 0.125s;
     position: absolute;
@@ -34,7 +82,7 @@ body {
     width: 576px;
     height: 704px;
     position: absolute;
-    background-image: url('/assets/backgrounds/background001.png');
+    background-image: url('../assets/backgrounds/background001.png');
     opacity: 33%;
 }
 
@@ -58,8 +106,20 @@ body {
     border: 1px solid cyan;
 }
 
+.username {
+    max-width: 50%;
+    color: white;
+}
+
+.logout {
+    position: relative;
+    margin-left: 30%;
+    border-radius: 8px;
+}
+
 .top {
     border-radius: 8px 8px 0px 0px;
+    display: flex;
 }
 
 .bottom {

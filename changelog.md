@@ -1,14 +1,14 @@
 # In the Beginning there was nothing...
 
 ---
-<img src="assets/Screenshots/00-Nothing.png" style="width: 60%;"/>
----
+
+<img src="public/assets/Screenshots/00-Nothing.png" style="width: 60%;"/>
 
 ## Then there was the world!
 
 ---
-<img src="assets/Screenshots/01-the_world.png" style="width: 60%;"/>
----
+
+## <img src="public/assets/Screenshots/01-the_world.png" style="width: 60%;"/>
 
 # PHASE ONE: Creating the World
 
@@ -31,10 +31,11 @@ In the initial setup phase, I want to be able to run a function that will popula
 6. Add dimensions to the world as global variables.
 
 7. I really want the world to be a square at the middle, rather than a line at the top. Let's change the original block-maker function, so it can be assigned start and stop coordinates that are 'out in the world' instead of being stuck at the top...
-Success! It even remembered where the world ended and dropped to the next row at the appropriate spot!
+   Success! It even remembered where the world ended and dropped to the next row at the appropriate spot!
+
 ---
-<img src="assets/Screenshots/02-block_loop.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/02-block_loop.png" style="width: 60%;" />
 
 8. Now I think we've just about perfected the basic block maker function. Time to upgrade it to the Block Printer, which will take parameters which define a shape, and call the block maker function to make this shape. We'll start with... a rectangle!
 
@@ -51,8 +52,8 @@ Success! It even remembered where the world ended and dropped to the next row at
 14. Save the Project in version 0.1 file to safeguard all this progress against future tampering!
 
 ---
-<img src="assets/Screenshots/03-Phase-1.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/03-Phase-1.png" style="width: 60%;" />
 
 # PHASE TWO: The Laws of Motion
 
@@ -71,11 +72,11 @@ In phase two time will be introduced, in order to regulate motion. The CSS grid 
 5. To save on memory, or get some kind of gravity boost, re-arrange blocks array into an object containing an attribute representing each column, in the form on an array: e.g. {Col A: [1,2,3], Col B: [2,3,4], ... } Thus each column can have a name which is the x-value, and each block within only needs to provide its y coordinate as proof that a particular 'cell' is occupied.
 
 6. Gravity. Make it so that, if the column you're in doesn't contain a block in the cell below you, you move into that cell. This might involve a game time loop...
-... It works! You can even jump up if it's just one tile, although it's a little bit clunky.
+   ... It works! You can even jump up if it's just one tile, although it's a little bit clunky.
 
 ---
-<img src="assets/Screenshots/04-Phase-2.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/04-Phase-2.png" style="width: 60%;" />
 
 # PHASE THREE: The End of the Beginning
 
@@ -94,18 +95,19 @@ In this phase I also reorganized the game's file locations, made the game engine
 4. Added new artwork with the help of Atack Artwork & Design Studios, who have their own graphics tablet:
 
 ---
-<img src="assets/Screenshots/05-Phase-3-intro.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/05-Phase-3-intro.png" style="width: 60%;" />
 
 5. If the player moves to within a certain distance of the edge in either direction, several things must happen simultaneously:
-A: All blocks in the farthest distant column are de-rendered;
-B: Everything in the world shifts away from the direction the player moved in:
-  * There is a horizontal offset value in the game engine
-  * All blocks' rendering calculations include the horizontal offset, and blocks have a method to toggle their dom elements
-  * The player's dom element is also offset horizontally, so your sprite is shifted away from the edge as the screen 'follows' you.
-* C: A new column is generated in front of the player, OR if the player is revisiting territory they moved away from, that column is re-rendered using the above-mentioned block dom toggle method.
-* D: Introduced new Columns object class to store blocks and make de/rendering them easier.
-* E: Columns object is called into existence as an attribute of the game engine.
+   A: All blocks in the farthest distant column are de-rendered;
+   B: Everything in the world shifts away from the direction the player moved in:
+
+- There is a horizontal offset value in the game engine
+- All blocks' rendering calculations include the horizontal offset, and blocks have a method to toggle their dom elements
+- The player's dom element is also offset horizontally, so your sprite is shifted away from the edge as the screen 'follows' you.
+- C: A new column is generated in front of the player, OR if the player is revisiting territory they moved away from, that column is re-rendered using the above-mentioned block dom toggle method.
+- D: Introduced new Columns object class to store blocks and make de/rendering them easier.
+- E: Columns object is called into existence as an attribute of the game engine.
 
 6. Physics tweaks: You can't use the move right or move left methods more than once per game cycle and jumping makes you move up by 2 now instead of 1 since the game cycle is much faster. Better physics are on the to-do list for the near future.
 
@@ -118,8 +120,8 @@ B: Everything in the world shifts away from the direction the player moved in:
 10. Crudely make some kind of level out of all this and make a mission for the player to touch both of the edges of the world. A console log message of congratulations is then proudly displayed!
 
 ---
-<img src="assets/Screenshots/06-Phase-3-levelup.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/06-Phase-3-levelup.png" style="width: 60%;" />
 
 11. Save this stage and get to work on some actual homework!
 
@@ -144,8 +146,8 @@ Lastly, since tidiness is the highest virtue, I will clean up the hastily added 
 6. Draw, and then implement 3 more hand-crafted biomes.
 
 ---
-<img src="assets/Screenshots/07-biometric.png" style="width: 60%;" />
----
+
+## <img src="public/assets/Screenshots/07-biometric.png" style="width: 60%;" />
 
 7. Make it so that, as the screen scrolls, the block column object's block printer method builds a biome instead of a lone column when it is called.
 
@@ -158,8 +160,8 @@ Lastly, since tidiness is the highest virtue, I will clean up the hastily added 
 11. Save current progress as version 0.1. We're restarting our version counts here, and the reason why is... to Create a repo on Github and learn the ropes of that system!!
 
 ---
-<img src="assets/Screenshots/08-wide-world.png" style="width: 60%;">
----
+
+## <img src="public/assets/Screenshots/08-wide-world.png" style="width: 60%;">
 
 # PHASE FIVE (AKA Version 0.2): Dynamic Blocks and Better Physics!
 
@@ -179,7 +181,7 @@ Phase Five will see the incorporation of three key features: 1. Blocks that have
 
 7. Re-tooled the physics engine to work on impulse rather than grid value snapping. Still looks about as clunky and I'm sure more than a few bugs have crept in and not yet been squashed. Removed 'move(direction)' middlemen functions for player movement and condensed that into a button handler which gives impulse, and an impulse movement method which runs every cycle: does collision checks and updates player's coordinates accordingly.
 
-8. Alter movement (x/y coordinate updates) so that impulse plays more of a role than just being a timer - e.g. you move faster when your impulse is high and slower as it tails off. Now that we're truly off the grid* for the player's movement it is finally possible to use some basic algebra to make the movement functions far more smooth - and interesting... And fucking complicated it turns out!
+8. Alter movement (x/y coordinate updates) so that impulse plays more of a role than just being a timer - e.g. you move faster when your impulse is high and slower as it tails off. Now that we're truly off the grid\* for the player's movement it is finally possible to use some basic algebra to make the movement functions far more smooth - and interesting... And fucking complicated it turns out!
 
 9. Completed some more significant overhauls to the physics system, which now includes both horizontal and vertical obstruction checks (each its own method) plus one method for handling the outcome of movement requests (sent from the keyboard handler) and the blockage checks. It is still possible to fall through a corner but that seems easily solvable after what we've just been through!
 
@@ -212,32 +214,69 @@ Phase Five will see the incorporation of three key features: 1. Blocks that have
 23. Background image/s!!!
 
 ---
-<img src="assets/Screenshots/09-mission-1.png" style="width: 60%;">
----
+
+## <img src="public/assets/Screenshots/09-mission-1.png" style="width: 60%;">
 
 24. Make 2 more levels that push the horizon of the Columns object's ability to add and remove columns:
 
 25. Extend the original world farther as a level instructions/mission setup:
-* Add New Mission, Level 2, that contains setup instructions to widen the world: "add-columns", [ [column start number (rightwards), column end number], [column start (leftwards), column end] ]
-* Add new case to engine's mission setup method for 'add-columns'
+
+- Add New Mission, Level 2, that contains setup instructions to widen the world: "add-columns", [ [column start number (rightwards), column end number], [column start (leftwards), column end] ]
+- Add new case to engine's mission setup method for 'add-columns'
 
 26. The final level's setup wipes and stores the original world and renders a completely new world: BaconLand!
 
-### 27. Upload Version 0.2 to Github before the corona virus kills us all!!!!
+27. Upload Version 0.2 to Github before the corona virus kills us all!!!!
 
-### 28. Now for the real fun: Upgrade the style sheet to SCSS, which will require setting up a basic json package so we can tell our CSS style sheet to 'watch' the SCSS sheet and convert it to CSS when we run the page...
+# PHASE SIX (AKA Version 0.3):
 
-### 29. This in turn requires some further reconfiguration of the games file folder structure, so we'll bring in the server.js and all of its various dependencies at this stage too, by npm installing express, morgan, concurrently and nodemon, and setting up the server.js file as the 'entry point' to the program. This will consolidate the newly added scss compilation process, and also hopefully let people play this game on the local network!
+Phase Five, while it saw the introduction of several key features, was far too ambitious for a single stage, and should really have been made in two or even three version increments. Phase six will restrict itself to just one purpose: Setting up the game on a server. This will of course require the installation of a whole host of dependencies to make the server run, and once it is up the game's UI will, if we're successful, not be any different at all. To cap this stage off and make some visual improvements, we will take advantage of the addition of a package.json file to upgrade our CSS file/s to SCSS and use this to add some fun visual effects for the mission change transitions... Hello Good Vibrations!
 
-### 30. Finishing touches: Rumble effect for level 2 (world widening)
+1. Use NPM to setup a basic package.json file, and fill in the answers to all its various questions.
 
-### 31. Finishing touches: Vortex effect (spin and blur) for level 3 (interdimensional)
+2. Create a server.js file, and leave it empty for now.
 
-### 32. Player XP display and Mission statement area glow briefly when new level loads.
+3. Install the various dependencies for our server by npm installing express, morgan, concurrently and nodemon, and setting up the server.js file as the 'entry point' to the program. This will consolidate the newly added scss compilation process, and also hopefully let people play this game on the local network!
 
-# PHASE SIX (AKA Version 0.3): Say Hello to the Bad Guys!
+4. Rearrange the game's file folder structure and place the original game files in the (newly added) public folder.
 
-Phase Five, while it saw the introduction of several key features, was far too ambitious for a single stage, and should really have been made in two or even three version increments. Phase six will restrict itself to just one purpose: adding the Enemy class.
+5. Configure the server to run on port 8080, and see if we can reach the game via the server.
+
+6. Have the game ping the server and the server reply with 'hello.'
+
+7. Have the game ping the server and the server reply with the current time.
+
+8. Have the game ping the server when you reach BaconLand, and have the server acknowledge by sending a short message that includes the time and the name of the level (echoed from the game).
+
+9. Create a new page, the Login Screen, that the user accesses before playing the game.
+
+10. The Server must know who the current user is.
+
+11. Make the server check, upon the user's arrival, whether they are signed in, and direct them to the sign-in page if they aren't.
+
+12. Add list of [user/password] combinations to the server's database area, so that when you create an account you can access it later.
+
+13. Hook up the signin page's input fields so that when you submit a name/pw for an existing user, server checks if the given userid and password match; if so it sends you to the game page; if not, it asks you to provide the correct password or register a new username if it doesn't recognize the name.
+
+14. Make one dummy username/pw combo and try it out by sending that combo from the signin page.
+
+15. Allow new users to enter a name/pw and submit that to the server; if the name isn't taken the server adds it to its database and lets them proceed; if not, the user is asked to either sign in with that name, or create a new username.
+
+### 16. Add Logout button to the sidebar + functionality for said button.
+
+17. Add function in the game's code to toggle server dependency.
+
+### 18. Update the Bacon Land server contact to add some data to the userid for the current player (xp, time played).
+
+### 19. Finishing touches: Rumble effect for level 2 (world widening)
+
+### 20. Finishing touches: Vortex effect (spin and blur) for level 3 (interdimensional)
+
+### 21. Player XP display and Mission statement area glow briefly when new level loads.
+
+# PHASE SIX (AKA Version 0.4): Say Hello to the Bad Guys!
+
+I have just one word for you, just one word: Baddies.
 
 # Food for Future Thought: On Scalability for smaller screens: Screen Scroll distance variable might be worth its weight in gold.
 

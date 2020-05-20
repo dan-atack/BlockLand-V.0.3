@@ -130,14 +130,16 @@ class Engine {
     if (this.mission.numberOfSetupSteps > 0) {
       this.mission.setupInstructions.forEach(setOfInstructions => this.setupNextMission(setOfInstructions));
     }
+    // Additionally, run special effects if there are any:
+    if (this.mission.specialFX) this.handleSpecialFX();
     // Finally, set a 5-second timer before resuming gameplay:
     setTimeout(() => {
       this.gameOn = true;
-    }, 500);
+    // freeze the game for as long as the missions special FX cue requires, or 500ms as a default:
+    }, (this.mission.specialFX) ? (this.mission.specialFX[2] * 1000) : 500);
   };
 
   setupNextMission(instructions) {
-    console.log(instructions[0]);
     // Instructions for next level setup will be tuples, the first element of which will be the code for what type of setup to perform:
       switch(instructions[0]) {
         case "create-block":
@@ -180,10 +182,19 @@ class Engine {
             })
           };
           break;
+        case "contact-server":
+          sendWorldData(instructions[1]);
         default:
           console.log("no special instructions recieved for this level.");
       }
-  }
+  };
+
+  handleSpecialFX() {
+    this.mission.specialFX[0].classList.add(this.mission.specialFX[1]);
+    setTimeout(() => {
+      this.mission.specialFX[0].classList.remove(this.mission.specialFX[1]);
+    }, (this.mission.specialFX[2] * 1000));
+  };
 
   checkForPlayerDeath() {
     // currently only standing on lava will kill you, which makes for a nice simple conditional:

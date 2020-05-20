@@ -221,7 +221,7 @@ class Physics {
         if (this.subject.ySpeed === 0) this.subject.ySpeed -= gravity;
     };
 
-    // Quick function to determine what you're standing on:
+    // Quick function to determine what you're standing on. NOTE: Tweak to allow jumping when you're > 50% over a ledge:
     determineSurface() {
         if (Number.isInteger(this.subject.y)) {
             this.subject.standingOn = this.columns.blockTypeDetector(this.subject.gridX, (this.subject.y-1));

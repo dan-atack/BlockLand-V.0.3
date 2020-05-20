@@ -36,20 +36,27 @@ class Mission {
             objective.test();
             if (objective.achieved) {
                 this.subject.experience += objective.xpValue;
+                playerXP.classList.add("XP");
                 this.objectivesAchieved.push(objective);
                 let achievementTextHeight = (this.subject.y < 6) ? (this.subject.y + 1) : 7;
                 let announcement = new Text(world, (this.subject.x - this.subject.horizontalOffset), (achievementTextHeight), 22, `${objective.achievementStatement} +${objective.xpValue} XP!`, "achievement");
                 setTimeout(() => {
                     announcement.removeDOM();
+                    playerXP.classList.remove("XP");
                 }, 3000);
             }
         })
         if ((this.objectivesRemaining.length === 0) && !(this.victoryMessageAwarded)) {
             this.accomplished = true;
+            // Hello Shiny text!
+            playerXP.classList.add("levelup");
+            missionBar.classList.add("levelup");
             let achievementTextHeight = (this.subject.y < 6) ? (this.subject.y + 2) : 8;
             let announcement = new Text(world, (this.subject.x - this.subject.horizontalOffset), (achievementTextHeight), 24, this.achievementStatement, "achievement");
                 setTimeout(() => {
                     announcement.removeDOM();
+                    playerXP.classList.remove("levelup");
+                    missionBar.classList.remove("levelup");
                     this.victoryMessageAwarded = false;
                 }, 4500);
             this.victoryMessageAwarded = true;
@@ -75,7 +82,6 @@ class Mission {
         this.setupInstructions = newMissionData[5] || null;
         // The Missions module will report to the engine how many sets of setup instructions to execute when it loads the level:
         if (this.setupInstructions) this.numberOfSetupSteps = this.setupInstructions.length;
-        console.log(this.numberOfSetupSteps);
         this.specialFX = newMissionData[6] || null;
     }
 

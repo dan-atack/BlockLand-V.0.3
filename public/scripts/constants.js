@@ -13,6 +13,8 @@ const playerXP = document.getElementById("player-xp");
 const playerStandingOnBlockType = document.getElementById("standing-on");
 const playerStandingInMedium = document.getElementById("standing-in");
 const resetButton = document.getElementById("reset");
+const userDisplay = document.getElementById("username");
+const logoutButton = document.getElementById("logout");
 
 // World Constraints: Establishing the maximum size of the entire world, in terms of width in columns,
 // spreading in either direction of the initial game screen:
@@ -37,3 +39,9 @@ const SCREEN_HEIGHT = 704;
 const BLOCK_WIDTH = 64;
 const PLAYER_WIDTH = 64;
 
+// Server-side stuff: Have a Current User to keep track of the player's progress:
+
+CURRENT_USER = "";
+
+// Toggle switch for server functionality:
+let serverSupport = true;

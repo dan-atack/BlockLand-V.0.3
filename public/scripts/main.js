@@ -15,10 +15,18 @@ const anyKey = (event) => {
         intro.removeDOM();
         instrucs.removeDOM();
         document.removeEventListener("keydown", anyKey);
+        userDisplay.innerText = `Logged in as ${CURRENT_USER}`;
+        logoutButton.style.display = "initial";
     }
 }
 
 // Run area. CAUTION: LIVE CODE FOLLOWS!
+
+// Very first thing the game will do now is to see if you're logged in as a user, and redirect you to the login page if not.
+
+checkUserStatus();
+// hide the logout button while this happens:
+logoutButton.style.display = "none";
 
 // Next, call an instance of the game engine so we can refer to and control anything in the world through it:
 // Thomas the Game Engine! Get it? I'm sure I'll never come to regret this unconventional naming choice!

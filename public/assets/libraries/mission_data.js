@@ -92,7 +92,8 @@ const missions = [
                     "xyz"
                 ]
             ]           // end of second (dummy) instructions set
-        ]           // end of setup instructions
+        ],           // end of setup instructions
+        // No special FX for this mission :(
     ],
     [
         2,
@@ -117,14 +118,18 @@ const missions = [
         ],
         [       // level setup instructions list opener
             [       // first instructions set opens
-                "add-columns",      // idx = 0 - codeword for engine switch case
+                "add-columns",          // idx = 0 - codeword for engine switch case
                 [                       // idx = 1 - list of arrays for left/rightward expansion (to allow different expansion in each direction)
                     [31, 50],           // add-columns idx = 0 - rightward columns to add: idx 0 is start, idx 1 is stop
                     [-31, -50]          // add-columns idx = 1 - leftward columns to add: idx 0 is start, idx 1 is stop
                 ]
             ]
         ],
-        "Cue Thunder and Lightning!!"
+        [                       // Special FX cues come in a 3-part tuple:
+            world,              // idx = 0 - the target dom element for special FX
+            'rumbling',         // idx = 1 - the class name to be temporarily added to said dom element
+            1.25                // idx = 2 - the duration, in seconds, of the effect (will also be used to determine pause break duration)
+        ]
     ],
     [
         3,
@@ -153,7 +158,7 @@ const missions = [
                 [0, 4]
             ]
         ],
-        "cue dissolve/end of the world FX"
+        // "cue dissolve/end of the world FX"
     ],
     [
         4,
@@ -191,6 +196,10 @@ const missions = [
             [
                 "set-world-width",       // set-world-width will alter the world width to make levels wider or tighter
                 18                      // one argument only: the new world width for the global variable
+            ],
+            [
+                "contact-server",        // NEW! Send a timestamp to the server to announce the player's arrival in a world!
+                "BaconLand"             // Contacting Server takes one argument: The name of the level just reached.
             ]
         ]
     ],
